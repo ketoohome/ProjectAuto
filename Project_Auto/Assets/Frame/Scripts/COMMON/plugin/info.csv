@@ -1,0 +1,34 @@
+调用dll文件使用说明：
+1. C#文件生成dll文件
+	1>. 在VS中创建“类库”项目，并设置Net Framework 3.5(3.5以上会报错)
+	2>. 在解决方案资源管理器中“引用”栏下添加UnityEngine.dll，目录：...\Unity5\Editor\Data\Managed\UnityEngine.dll
+	3>. 编写需要的cs文件代码，并编译成dll文件
+	4>. 把dll文件加入unity目录中“plugin”文件加下，就可以直接应用了。
+2. C++文件生成dll文件
+	1>. 同上
+	2>. 头文件加入：
+		# define _DLLExport __declspec (dllexport)    
+		# else    
+		# define _DLLExport __declspec (dllimport)    
+		#endif    
+  
+		extern "C"  int _DLLExport MyADD(int x, int y); 
+
+		在源文件下加入：
+		//宏定义    
+		#define  EXPORTBUILD    
+  
+		//加载头文件    
+		#include "TestDll.h"    
+  
+		//设置函数    
+		int _DLLExport MyADD(int x, int y) {  
+			return x + y;  
+		}  
+	3>. 同上
+	4>. using System.Runtime.InteropServices;  //调用c++中dll文件需要引入 
+		DllImport[""]的方式来添加对dll的引用。
+		[DllImport("MyDll")]
+		static extern int MyADD(int x , int y);  
+
+http://blog.csdn.net/ycl295644/article/details/40659189

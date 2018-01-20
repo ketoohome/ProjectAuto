@@ -1,0 +1,13 @@
+工具介绍：
+KsSuperGraphEx ：	函数曲线预览
+Machination:		游戏系统设计工具
+SoundMaker_SFXR:	8位音效制作工具
+TI_5_windows64:		LowPoly风格图片制作
+Triangulator:		LowPoly风格图片制作
+
+网址：
+http://tonematrix.audiotool.com/   音乐制作工具
+https://color.adobe.com/zh/create/color-wheel/  配色工具
+
+控制器功能：
+http://www.ceeger.com/Components/class-InputManager.html
