@@ -14,13 +14,13 @@ namespace GameEffect {
         void Awake() {
 			m_Animator = GetComponent<Animator> ();
 
-            EventMachine.Register(CommonEventID.Event_Effect_CameraVibration, OnCameraVibration);
-			EventMachine.Register(CommonEventID.Event_Effect_CameraAnimation, OnCameraAnimation);
+            EventMachine.Register(EventID.Event_Effect_CameraVibration, OnCameraVibration);
+			EventMachine.Register(EventID.Event_Effect_CameraAnimation, OnCameraAnimation);
         }
 
         void OnDestroy() {
-            EventMachine.Unregister(CommonEventID.Event_Effect_CameraVibration, OnCameraVibration);
-			EventMachine.Unregister(CommonEventID.Event_Effect_CameraAnimation, OnCameraAnimation);
+            EventMachine.Unregister(EventID.Event_Effect_CameraVibration, OnCameraVibration);
+			EventMachine.Unregister(EventID.Event_Effect_CameraAnimation, OnCameraAnimation);
         }
         void Update()
         {

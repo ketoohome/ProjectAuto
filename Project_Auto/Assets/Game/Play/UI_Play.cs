@@ -16,7 +16,7 @@ namespace GameUI{
         }
 
         public void OnBack() {
-            EventMachine.SendEvent(CommonEventID.Event_UI_Play_Back);
+            EventMachine.SendEvent(EventID.Event_UI_Play_Back);
         }
 	}
 }

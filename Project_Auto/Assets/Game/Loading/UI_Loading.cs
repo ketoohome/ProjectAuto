@@ -13,11 +13,11 @@ namespace GameUI{
 		public int order;
 
 		void Awake(){
-			EventMachine.Register (CommonEventID.Event_Loading,OnLoadingProgress);
+			EventMachine.Register (EventID.Event_Loading,OnLoadingProgress);
 		}
 
 		void OnDestroy(){
-			EventMachine.Unregister (CommonEventID.Event_Loading,OnLoadingProgress);
+			EventMachine.Unregister (EventID.Event_Loading,OnLoadingProgress);
 		}
 
         void Start() {
@@ -32,12 +32,6 @@ namespace GameUI{
 			StartCoroutine (UpdateText());
         }
 
-		void Update(){
-			// 更新进度条,如果进度为1则自动关闭
-			if(Progress >= 1.0f) ClockMachine.It.CreateClock(2.0f,()=>{Destroy(gameObject);}); 
-			
-		}
-
 		IEnumerator UpdateText(){
 			while (true) {
 				label += ".";
@@ -50,6 +44,11 @@ namespace GameUI{
 		void OnLoadingProgress(params object[] args){
 			if (args.Length == 0) return;
 			Progress = (float)args [0];
+			// 更新进度条,如果进度为1则自动关闭
+			if(Progress >= 1.0f) {
+				GetComponent<Animator> ().Play ("Close");
+				ClockMachine.It.CreateClock(1.0f,()=>{Destroy(gameObject);});
+			}
 		}
     }
 }

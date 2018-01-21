@@ -10,13 +10,13 @@ namespace GameLogic{
 		public override void Start(){
 
             // 4秒后关闭loading
-            ClockMachine.It.CreateClock(3, () => { EventMachine.SendEvent(CommonEventID.Event_UI_Delete,UIType.UILoading); });
+			ClockMachine.It.CreateClock(2, () => { EventMachine.SendEvent(EventID.Event_Loading,1.0f); });
 
 			// 创建一个UI
-			EventMachine.SendEvent(CommonEventID.Event_UI_Create,UIType.UIPlay);
+			EventMachine.SendEvent(EventID.Event_UI_Create,UIType.UIPlay);
 
 			// 注册事件
-            EventMachine.Register(CommonEventID.Event_UI_Play_Back, OnPlayBack);
+            EventMachine.Register(EventID.Event_UI_Play_Back, OnPlayBack);
 			// ...
 
             // 创建游戏规则
@@ -38,10 +38,10 @@ namespace GameLogic{
 
 		public override void End() {
             // 移除一个UI
-            EventMachine.SendEvent(CommonEventID.Event_UI_Delete, UIType.UIPlay);
+            EventMachine.SendEvent(EventID.Event_UI_Delete, UIType.UIPlay);
 
 			// 注销事件
-            EventMachine.Unregister(CommonEventID.Event_UI_Play_Back, OnPlayBack);
+            EventMachine.Unregister(EventID.Event_UI_Play_Back, OnPlayBack);
 			// ...
 		}
 

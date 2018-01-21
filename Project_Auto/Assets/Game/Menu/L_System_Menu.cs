@@ -22,21 +22,21 @@ namespace GameLogic{
             MenuData.ClearChildren();
 
 			// 注册监听函数
-            EventMachine.Register(CommonEventID.Event_UI_Menu_Play, OnPlay);
-            EventMachine.Register(CommonEventID.Event_UI_Menu_TwoPlay, OnTwoPlay);
-            EventMachine.Register(CommonEventID.Event_UI_Menu_Multiplayer, OnMultiplayer);
+            EventMachine.Register(EventID.Event_UI_Menu_Play, OnPlay);
+            EventMachine.Register(EventID.Event_UI_Menu_TwoPlay, OnTwoPlay);
+            EventMachine.Register(EventID.Event_UI_Menu_Multiplayer, OnMultiplayer);
             // 创建一个UI
-			EventMachine.SendEvent(CommonEventID.Event_UI_Create,UIType.UIMenu);
+			EventMachine.SendEvent(EventID.Event_UI_Create,UIType.UIMenu);
 		} 
 
 		public override void End(){
 			// 移除一个UI
-			EventMachine.SendEvent(CommonEventID.Event_UI_Delete,UIType.UIMenu);
-            EventMachine.SendEvent(CommonEventID.Event_UI_Create, UIType.UILoading);
+			EventMachine.SendEvent(EventID.Event_UI_Delete,UIType.UIMenu);
+            EventMachine.SendEvent(EventID.Event_UI_Create, UIType.UILoading);
 			// 注销监听函数
-            EventMachine.Unregister(CommonEventID.Event_UI_Menu_Play, OnPlay);
-            EventMachine.Unregister(CommonEventID.Event_UI_Menu_TwoPlay, OnTwoPlay);
-            EventMachine.Unregister(CommonEventID.Event_UI_Menu_Multiplayer, OnMultiplayer);
+            EventMachine.Unregister(EventID.Event_UI_Menu_Play, OnPlay);
+            EventMachine.Unregister(EventID.Event_UI_Menu_TwoPlay, OnTwoPlay);
+            EventMachine.Unregister(EventID.Event_UI_Menu_Multiplayer, OnMultiplayer);
         }
 
 		public override void CustomUpdate () {}

@@ -21,17 +21,17 @@ namespace GameUI
             RegisterUIs();
 
             // 注册事件
-            EventMachine.Register(CommonEventID.Event_UI_Create, OnCreateUI);
-            EventMachine.Register(CommonEventID.Event_UI_Delete, OnDeleteUI);
-            EventMachine.Register(CommonEventID.Event_UI_DeleteAll, OnDeleteAllUI);
+            EventMachine.Register(EventID.Event_UI_Create, OnCreateUI);
+            EventMachine.Register(EventID.Event_UI_Delete, OnDeleteUI);
+            EventMachine.Register(EventID.Event_UI_DeleteAll, OnDeleteAllUI);
         }
 
         void OnDestroy()
         {
             // 注销事件
-            EventMachine.Unregister(CommonEventID.Event_UI_Create, OnCreateUI);
-            EventMachine.Unregister(CommonEventID.Event_UI_Delete, OnDeleteUI);
-            EventMachine.Unregister(CommonEventID.Event_UI_DeleteAll, OnDeleteAllUI);
+            EventMachine.Unregister(EventID.Event_UI_Create, OnCreateUI);
+            EventMachine.Unregister(EventID.Event_UI_Delete, OnDeleteUI);
+            EventMachine.Unregister(EventID.Event_UI_DeleteAll, OnDeleteAllUI);
         }
 
         /// <summary>

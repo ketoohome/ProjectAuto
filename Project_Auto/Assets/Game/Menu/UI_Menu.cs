@@ -6,16 +6,16 @@ namespace GameUI{
 
 	public class UI_Menu : IUIBase {
 		public void OnSinglePlayer(){
-			EventMachine.SendEvent(CommonEventID.Event_UI_Menu_Play);
+			EventMachine.SendEvent(EventID.Event_UI_Menu_Play);
 		}
 
         public void OnTwoPlayer()
         {
-            EventMachine.SendEvent(CommonEventID.Event_UI_Menu_TwoPlay);
+            EventMachine.SendEvent(EventID.Event_UI_Menu_TwoPlay);
         }
 
         public void OnMultiplayer() {
-            EventMachine.SendEvent(CommonEventID.Event_UI_Menu_Multiplayer);
+            EventMachine.SendEvent(EventID.Event_UI_Menu_Multiplayer);
         }
 	}
 }

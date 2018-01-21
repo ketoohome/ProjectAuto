@@ -22,7 +22,7 @@ namespace GameCommon
             timescale = Mathf.Max(timescale, 0.01f);
             Time.timeScale = timescale;
 
-            EventMachine.SendEvent(CommonEventID.Event_Time_ScaleChange);
+            EventMachine.SendEvent(EventID.Event_Time_ScaleChange);
             m_Steps.Add(counter, new Step(counter, clock, timescale));
         }
 
@@ -33,7 +33,7 @@ namespace GameCommon
             timescale = Mathf.Max(timescale, 0);
             Time.timeScale = timescale;
 
-			EventMachine.SendEvent(CommonEventID.Event_Time_ScaleChange);
+			EventMachine.SendEvent(EventID.Event_Time_ScaleChange);
             m_Steps.Add(counter, new Step(counter, frames, timescale));
         }
 
@@ -53,13 +53,13 @@ namespace GameCommon
                 if (m_isPause)
                 {
                     Time.timeScale = 0;
-					EventMachine.SendEvent(CommonEventID.Event_Time_ScaleChange);
+					EventMachine.SendEvent(EventID.Event_Time_ScaleChange);
                 }
                 // 解除暂停，如果当前有帧延迟队列中仍然有为处理对象，则跳过
                 else if (m_Steps.Count == 0)
                 {
                     Time.timeScale = 1;
-					EventMachine.SendEvent(CommonEventID.Event_Time_ScaleChange);
+					EventMachine.SendEvent(EventID.Event_Time_ScaleChange);
                 }
                 else {
                     int num = m_Steps.Count;
@@ -76,7 +76,7 @@ namespace GameCommon
             if (m_Steps.Count == 0 && !m_isPause)
             {
                 Time.timeScale = 1;
-				EventMachine.SendEvent(CommonEventID.Event_Time_ScaleChange);
+				EventMachine.SendEvent(EventID.Event_Time_ScaleChange);
             }
             else if (m_Steps.Count > 0 && !m_isPause)
             {
@@ -84,7 +84,7 @@ namespace GameCommon
                 uint[] strKey = new uint[num];
                 m_Steps.Keys.CopyTo(strKey, 0);
                 Time.timeScale = m_Steps[strKey[num - 1]].m_timescale;
-				EventMachine.SendEvent(CommonEventID.Event_Time_ScaleChange);
+				EventMachine.SendEvent(EventID.Event_Time_ScaleChange);
             }
         }
 
@@ -93,7 +93,7 @@ namespace GameCommon
             m_Steps.Clear();
             Time.timeScale = 1;
             m_isPause = false;
-			EventMachine.SendEvent(CommonEventID.Event_Time_ScaleChange);
+			EventMachine.SendEvent(EventID.Event_Time_ScaleChange);
         }
 
         /// <summary>

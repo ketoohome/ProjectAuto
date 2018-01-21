@@ -4,19 +4,6 @@ using System.Collections.Generic;
 using GameCommon;
 using TOOL;
 
-namespace GameCommon{
-	/// <summary>
-	/// UI 类型ID
-	/// </summary>
-	public enum UIType : int
-	{
-		UIMenu = 0,     // 标题界面
-		UIPlay = 1,     // 游戏界面
-		UILoading = 2,  // Loading界面
-		// ...
-	}
-}
-
 namespace GameUI{
 	
     /// <summary>

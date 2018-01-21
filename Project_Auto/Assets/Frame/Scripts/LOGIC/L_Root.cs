@@ -63,7 +63,7 @@ namespace GameLogic
                 Debuger.LogError("当前状态为NULL，请在注册函数中设置初始化状态！");
             }
             // 游戏逻辑初始化完成，游戏启动
-            EventMachine.SendEvent(CommonEventID.Event_GameLogicStart);				
+            EventMachine.SendEvent(EventID.Event_GameLogicStart);				
         }
 
         /// <summary>

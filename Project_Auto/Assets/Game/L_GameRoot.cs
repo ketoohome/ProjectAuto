@@ -34,10 +34,10 @@ namespace GameLogic
 		protected IEnumerator LoadAsynScene(string name){
 			AsyncOperation asynLoad = SceneManager.LoadSceneAsync (name);
 			while (!asynLoad.isDone) {
-				EventMachine.SendEvent (CommonEventID.Event_Loading,asynLoad.progress);
+				EventMachine.SendEvent (EventID.Event_Loading,asynLoad.progress);
 				yield return null;
 			}
-			EventMachine.SendEvent (CommonEventID.Event_Loading,1.0f);
+			EventMachine.SendEvent (EventID.Event_Loading,1.0f);
 		}
     }
 
@@ -63,7 +63,6 @@ namespace GameLogic
         public override void Enter(L_Root root)
         {
             m_Asyn = SceneManager.LoadSceneAsync("Initilize");
-			root.StartCoroutine ("Initilize");
 		}
 
         /// <summary>

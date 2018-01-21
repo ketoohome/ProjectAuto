@@ -74,7 +74,7 @@ namespace GameLogic{
 			m_Controller.Move (move.normalized * Time.deltaTime * 20);
 
             if (Input.GetMouseButtonDown(0)) {
-                EventMachine.SendEvent(CommonEventID.Event_Effect_CameraVibration,0.3f,Vector3.forward,2);
+                EventMachine.SendEvent(EventID.Event_Effect_CameraVibration,0.3f,Vector3.forward,2);
             }
         }
 
