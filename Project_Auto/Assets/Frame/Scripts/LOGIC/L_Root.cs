@@ -33,16 +33,6 @@ namespace GameLogic
         }
 
         /// <summary>
-        /// 系统管理器
-        /// </summary>
-        L_SystemManager m_sysMgr;
-
-        /// <summary>
-        /// 缓存池
-        /// </summary>
-        L_DataPool m_DataPool;
-
-        /// <summary>
         /// 游戏初始化
         /// </summary>
         void Awake() {
@@ -51,9 +41,11 @@ namespace GameLogic
             // 主逻辑所挂接的gameObject不能在切换场景的时候删除。
             DontDestroyOnLoad(gameObject);
             // 初始化系统管理器(注册器)
-            m_sysMgr = gameObject.AddComponent<L_SystemRegister>();
+            gameObject.AddComponent<L_SystemRegister>();
             // 初始化缓存池，创建一个根节点
-            m_DataPool = gameObject.AddComponent<L_DataPool>();
+            gameObject.AddComponent<L_DataPool>();
+            // 初始化排行榜管理器
+            gameObject.AddComponent<L_RankManager>();
             // 初始化状态机
             m_stateMachine = new IStateMachine<L_Root>(this);
             // 注册状态
@@ -72,7 +64,7 @@ namespace GameLogic
         void Update() {
             if (!m_IsLogicPause) {
                 // 系统更新
-                m_sysMgr.CustomUpdate();
+                L_SystemRegister.Instance.CustomUpdate();
                 // 游戏状态更新
                 m_stateMachine.Update();
                 // 计时器更新

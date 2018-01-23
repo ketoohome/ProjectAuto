@@ -39,7 +39,16 @@ namespace GameLogic{
             EventMachine.Unregister(EventID.Event_UI_Menu_Multiplayer, OnMultiplayer);
         }
 
-		public override void CustomUpdate () {}
+		public override void CustomUpdate () {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                EventMachine.SendEvent(EventID.Event_UI_Create, UIType.UIRank);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                L_RankManager.Instance.ClearData("TestRank");
+            }
+        }
         /// <summary>
         /// 开始游戏
         /// </summary>

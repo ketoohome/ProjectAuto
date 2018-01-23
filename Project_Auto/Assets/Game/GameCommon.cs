@@ -8,6 +8,7 @@
 		UIMenu = 0,     // 标题界面
 		UIPlay = 1,     // 游戏界面
 		UILoading = 2,  // Loading界面
+        UIRank = 3,     // 排行榜界面
 		// ...
 	}
 

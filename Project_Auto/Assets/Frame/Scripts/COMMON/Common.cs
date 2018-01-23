@@ -12,7 +12,7 @@ namespace GameCommon {
 		// 不同平台的streaming资源路径
 		public static readonly string PathURL =
 			#if UNITY_STANDALONE_WIN || UNITY_EDITOR
-			"file://" + Application.dataPath + "/StreamingAssets/";
+			Application.dataPath + "/StreamingAssets/";
 			#elif UNITY_ANDROID
 			Application.streamingAssetsPath;
 			//"jar:file://" + Application.dataPath + "!/assets/";
