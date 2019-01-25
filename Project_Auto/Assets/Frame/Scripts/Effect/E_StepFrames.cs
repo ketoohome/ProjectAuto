@@ -13,15 +13,21 @@ namespace GameEffect
 		public float timeScale = 0.2f;// 时间速度倍数
 
 		// Use this for initialization
-		void Awake () {
-			ClockMachine.It.CreateClock("Step"+gameObject.GetInstanceID(),Delay,StepActive);
-		}
-		void StepActive(){
-            if (FrameCount != 0)
-                GameTimeStepMgr.It.StepGameWithFrames((uint)FrameCount, timeScale);
-            else
-                GameTimeStepMgr.It.StepGameWithTime(Duration, timeScale);
-			Destroy(this);
-		}
+		void OnEnable () {
+            if(FrameCount == 0)
+                StartCoroutine(StepActiveWithClock(Delay, Duration, timeScale));
+            else StartCoroutine(StepActiveWithClock(Delay, FrameCount, timeScale));
+        }
+
+        IEnumerator StepActiveWithClock(float delay, float clock,float scale) {
+            yield return new WaitForSeconds(delay);
+            GameTimeStepMgr.It.StepGameWithTime(clock, scale);
+        }
+
+        IEnumerator StepActiveWithFrame(float delay, int frame, float scale)
+        {
+            yield return new WaitForSeconds(delay);
+            GameTimeStepMgr.It.StepGameWithFrames((uint)frame, timeScale);
+        }
 	}
 }

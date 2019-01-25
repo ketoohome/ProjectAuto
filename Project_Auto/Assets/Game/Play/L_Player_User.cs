@@ -45,13 +45,13 @@ namespace GameLogic{
 					move += Vector3.left;
 				if (Input.GetKey (KeyCode.D))
 					move -= Vector3.left;
-                /*
+                
                 move -= Vector3.left * Input.GetAxis("Joy1_LS-x");
                 move -= Vector3.forward * Input.GetAxis("Joy1_LS-y");
 
                 if (Input.GetButton("Joy1_A")) move -= Vector3.forward;
                 if (Input.GetButton("Joy1_B")) move += Vector3.forward;
-                */
+                
             }
 
 			else {
@@ -76,6 +76,8 @@ namespace GameLogic{
             if (Input.GetMouseButtonDown(0)) {
                 EventMachine.SendEvent(EventID.Event_Effect_CameraVibration,0.3f,Vector3.forward,2);
             }
+
+            Debug.LogWarning(Input.GetAxis("Joy1_Cross-x"));
         }
 
         /// <summary>
