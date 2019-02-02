@@ -21,7 +21,7 @@ namespace GameLogic
         /// <summary>
         /// 游戏状态机实例
         /// </summary>
-        protected IStateMachine<L_Root> m_stateMachine;
+        protected IStateMachine<L_Root,GameState> m_stateMachine;
 
         /// <summary>
         /// 改变游戏当前状态
@@ -47,7 +47,7 @@ namespace GameLogic
             // 初始化排行榜管理器
             gameObject.AddComponent<L_RankManager>();
             // 初始化状态机
-            m_stateMachine = new IStateMachine<L_Root>(this);
+            m_stateMachine = new IStateMachine<L_Root,GameState>(this);
             // 注册状态
             RegisterStates();
             // 防止忘记设置初始化状态

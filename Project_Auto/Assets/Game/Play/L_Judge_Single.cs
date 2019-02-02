@@ -11,7 +11,7 @@ namespace GameLogic
     public class L_Judge_Single : MonoBehaviour, IJudge{
 
         void Awake() {
-            InitStateMachine();
+            m_stateMachine = new IQStateMachine<L_Judge_Single, State>(this);
         }
 
         void Update(){
@@ -48,7 +48,7 @@ namespace GameLogic
         /// <summary>
         /// 玩家状态
         /// </summary>
-        IStateMachine<L_Judge_Single> m_stateMachine;
+        IQStateMachine<L_Judge_Single,State> m_stateMachine;
 
         ///----------------------------------------------------------------------------------
         ///1. 定义状态类型枚举
@@ -59,65 +59,50 @@ namespace GameLogic
         /// <summary>
         /// 游戏系统状态类型
         /// </summary>
-        enum PlayState
+        enum State
         {
-            PS_Initialize,	// 游戏初始状态
-            PS_Ready,	    // 准备状态
-            PS_Playing,     // 游戏状态
-            PS_End,         // 结束状态
+            Initialize,	 // 游戏初始状态
+            Ready,	     // 准备状态
+            Playing,     // 游戏状态
+            End,         // 结束状态
         }
-
-        /// <summary>
-        /// 初始化状态机
-        /// </summary>
-        void InitStateMachine()
-        {
-            m_stateMachine = new IStateMachine<L_Judge_Single>(this);
-            m_stateMachine.Add(PlayState.PS_Initialize, new PlayState_Initilize());
-            m_stateMachine.Add(PlayState.PS_Ready, new PlayState_Ready());
-            m_stateMachine.Add(PlayState.PS_Playing, new PlayState_Playing());
-            m_stateMachine.Add(PlayState.PS_End, new PlayState_End());
-            // ...
-            m_stateMachine.ChangeState(PlayState.PS_Initialize); // 设置默认状态
-        }
-
 
         /// <summary>
         /// 初始化状态
         /// </summary>
-        class PlayState_Initilize : IState<L_Judge_Single>
+        class StateInitialize : IQState<L_Judge_Single>
         {
-            public override void Enter(L_Judge_Single root)
+            public override void Enter()
             {
-                root.LoadData();        // 装载数据
-                root.CreatePlayer();    // 创建角色
+                Root.LoadData();        // 装载数据
+                Root.CreatePlayer();    // 创建角色
             }
-            public override void Execute(L_Judge_Single root)
+            public override void Execute()
             {
                 // 必须两个角色才能开始游戏
-                if (L_PlayerManager.It.PlayerCount > 0) root.m_stateMachine.ChangeState(PlayState.PS_Ready);
+                if (L_PlayerManager.It.PlayerCount > 0) Root.m_stateMachine.ChangeState(State.Ready);
             }
         }
 
         /// 准备状态
         /// </summary>
-		class PlayState_Ready : IState<L_Judge_Single>
+		class StateReady : IQState<L_Judge_Single>
         {
-            public override void Enter(L_Judge_Single root)
+            public override void Enter()
             {
                 // 倒计时3秒开始
-                ClockMachine.It.CreateClock(0.5f, () => { root.m_stateMachine.ChangeState(PlayState.PS_Playing); });
+                ClockMachine.It.CreateClock(0.5f, () => { Root.m_stateMachine.ChangeState(State.Playing); });
             }
         }
 
         /// <summary>
         /// 游戏状态
         /// </summary>
-		class PlayState_Playing : IState<L_Judge_Single> {}
+		class StatePlaying : IQState<L_Judge_Single> {}
 
         /// <summary>
         /// 结束状态
         /// </summary>
-		class PlayState_End : IState<L_Judge_Single> {}
+		class StateEnd : IQState<L_Judge_Single> {}
     }
 }

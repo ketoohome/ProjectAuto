@@ -60,7 +60,7 @@ namespace GameLogic
         /// <summary>
         /// 玩家状态
         /// </summary>
-        IStateMachine<L_Judge_Network> m_stateMachine;
+        IStateMachine<L_Judge_Network,PlayState> m_stateMachine;
 
         /// <summary>
         /// 游戏系统状态类型
@@ -78,7 +78,7 @@ namespace GameLogic
         /// </summary>
         void InitStateMachine()
         {
-            m_stateMachine = new IStateMachine<L_Judge_Network>(this);
+            m_stateMachine = new IStateMachine<L_Judge_Network,PlayState>(this);
             m_stateMachine.Add(PlayState.PS_Initialize, new PlayState_Initilize());
             m_stateMachine.Add(PlayState.PS_Ready, new PlayState_Ready());
             m_stateMachine.Add(PlayState.PS_Playing, new PlayState_Playing());
