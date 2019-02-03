@@ -147,6 +147,7 @@ namespace Cinemachine.Editor
         {
             static InstallGizmos()
             {
+                /*
                 string srcFile = ScriptableObjectUtility.CinemachineInstallPath + "/Gizmos/" + kGizmoFileName;
                 if (File.Exists(srcFile))
                 {
@@ -162,6 +163,7 @@ namespace Cinemachine.Editor
                         File.Copy(srcFile, dstFile, true);
                     }
                 }
+                */
             }
         }
     }
